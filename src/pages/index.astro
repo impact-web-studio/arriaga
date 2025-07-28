@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 ---
@@ -9,24 +10,17 @@ import Hero from '~/components/widgets/Hero.astro';
 			{
 				variant: 'primary',
 				text: 'Get a Free Estimate',
-				href: 'worksiteleads.com/contact',
-				target: '_blank',
-				icon: 'tabler:chevron-right',
+				href: '#contact',
 			},
 			{
 				variant: 'secondary',
 				text: 'Call Now: (316) 330-4092',
 				href: 'tel:+13163304092',
-				target: '_blank',
-				icon: 'tabler:chevron-right',
 			},
 		]}
-	>
-		<Fragment slot="title">
-			Free template for <span class="hidden xl:inline"
-				>creating websites with</span
-			>
-			<span class="text-accent"> Astro 5.0</span> + Tailwind CSS
-		</Fragment>
-	</Hero>
+		backgroundImage={{
+			src: '~/assets/premier-hero-bg.jpeg',
+			alt: 'Premier Renovations Hero Image',
+		}}
+	/>
 </Layout>
