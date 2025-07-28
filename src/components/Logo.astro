@@ -1,0 +1,13 @@
+---
+const {
+	neutralText = 'Worksite',
+	colorText = 'Leads',
+	textColor = 'text-gray-900',
+} = Astro.props;
+---
+
+<span
+	class={`self-center text-2xl md:text-xl font-bold ${textColor} whitespace-nowrap`}
+>
+	{neutralText}<span class="text-blue-500">{colorText}</span>
+</span>

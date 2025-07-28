@@ -1,0 +1,190 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '~/components/Logo.astro';
+import ToggleMenu from '~/components/common/ToggleMenu.astro';
+import Button from '~/components/ui/Button.astro';
+
+type Link = {
+	text?: string;
+	href?: string;
+	ariaLabel?: string;
+	icon?: string;
+	links?: Link[];
+};
+
+type Action = {
+	text?: string;
+	href?: string;
+	target?: string;
+};
+
+type Information = {
+	type: string;
+	value: string;
+};
+
+interface Props {
+	id?: string;
+	links?: Link[];
+	actions?: Action[];
+	information?: Information[];
+}
+
+const { id, links = [], actions = [], information = [] } = Astro.props as Props;
+
+// Simple function to check if link is active
+const isActiveLink = (linkHref: string, currentUrl: URL) => {
+	// Remove trailing slashes for comparison
+	const normalizeUrl = (url: string) => url.replace(/\/$/, '') || '/';
+	const currentPath = normalizeUrl(currentUrl.pathname);
+	const linkPath = normalizeUrl(linkHref);
+
+	return currentPath === linkPath;
+};
+
+const currentUrl = Astro.url;
+---
+
+<header
+	class="relative top-0 z-40 flex-none mx-auto w-full bg-white border-b border-gray-200 transition-[opacity] ease-in-out"
+	{...id ? { id } : {}}
+>
+	<!-- Contact Information Bar -->
+	{
+		information?.length > 0 && (
+			<div class="bg-gray-50 border-b border-gray-200">
+				<div class="max-w-7xl mx-auto px-3 md:px-6">
+					<div class="flex justify-end items-center py-2 text-sm text-gray-600">
+						{information.map((info, index) => (
+							<div class="flex items-center">
+								{info.type === 'phone' && (
+									<>
+										<Icon
+											name="tabler:phone"
+											class="w-4 h-4 mr-1"
+										/>
+										<span>{info.value}</span>
+									</>
+								)}
+								{info.type === 'email' && (
+									<>
+										<Icon
+											name="tabler:mail"
+											class="w-4 h-4 mr-1"
+										/>
+										<span>{info.value}</span>
+									</>
+								)}
+								{index < information.length - 1 && (
+									<span class="mx-4 text-gray-300">|</span>
+								)}
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	<!-- Main Navigation -->
+	<div>
+		<div
+			class="relative text-default py-3 px-3 md:px-6 mx-auto w-full md:grid md:grid-cols-3 md:items-center max-w-7xl"
+		>
+			<div class:list={['mr-auto rtl:mr-0 rtl:ml-auto flex justify-between']}>
+				<a
+					class="flex items-center"
+					href="/"
+				>
+					<Logo />
+				</a>
+				<div class="flex items-center md:hidden">
+					<ToggleMenu />
+				</div>
+			</div>
+			<nav
+				class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+				aria-label="Main navigation"
+			>
+				<ul
+					class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
+				>
+					{
+						links.map(({ text, href, links }) => (
+							<li class={links?.length ? 'dropdown' : ''}>
+								{links?.length ? (
+									<>
+										<button
+											type="button"
+											class="hover:text-link px-4 py-3 flex items-center whitespace-nowrap"
+										>
+											{text}{' '}
+											<Icon
+												name="tabler:chevron-down"
+												class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline"
+											/>
+										</button>
+										<ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+											{links.map(({ text: text2, href: href2 }) => (
+												<li>
+													<a
+														class:list={[
+															'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link py-2 px-5 block whitespace-no-wrap',
+															{
+																'aw-link-active':
+																	href2 && isActiveLink(href2, currentUrl),
+															},
+														]}
+														href={href2}
+													>
+														{text2}
+													</a>
+												</li>
+											))}
+										</ul>
+									</>
+								) : (
+									<a
+										class:list={[
+											'hover:text-link px-4 py-3 flex items-center whitespace-nowrap',
+											{
+												'aw-link-active':
+													href && isActiveLink(href, currentUrl),
+											},
+										]}
+										href={href}
+									>
+										{text}
+									</a>
+								)}
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+			<div
+				class:list={[
+					'ml-auto rtl:ml-0 rtl:mr-auto',
+					'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
+				]}
+			>
+				<div class="items-center flex justify-between w-full md:w-auto">
+					{
+						actions?.length ? (
+							<span class="ml-4 rtl:ml-0 rtl:mr-4">
+								{actions.map((btnProps) => (
+									<Button
+										{...btnProps}
+										class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto bg-blue-600 hover:bg-blue-700 text-white rounded"
+									/>
+								))}
+							</span>
+						) : (
+							''
+						)
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,107 @@
+---
+export interface Props {
+	title: string;
+	description: string;
+	url?: string;
+	image?: string;
+	keywords?: string | string[];
+	type?: string;
+	locale?: string;
+	siteName?: string;
+	robots?: string;
+	schema?: object;
+}
+
+const {
+	title,
+	description,
+	url = 'https://example.com',
+	image = '/og-default.jpg',
+	keywords = [],
+	type = 'website',
+	locale = 'en_US',
+	siteName = 'Example Site',
+	robots = 'index, follow',
+	schema,
+} = Astro.props as Props;
+
+const formattedKeywords = Array.isArray(keywords)
+	? keywords.join(', ')
+	: keywords;
+---
+
+<!-- Basic Meta -->
+<meta
+	name="description"
+	content={description}
+/>
+<meta
+	name="keywords"
+	content={formattedKeywords}
+/>
+<meta
+	name="robots"
+	content={robots}
+/>
+
+<!-- Open Graph -->
+<meta
+	property="og:title"
+	content={title}
+/>
+<meta
+	property="og:description"
+	content={description}
+/>
+<meta
+	property="og:type"
+	content={type}
+/>
+<meta
+	property="og:locale"
+	content={locale}
+/>
+<meta
+	property="og:site_name"
+	content={siteName}
+/>
+<meta
+	property="og:url"
+	content={url}
+/>
+<meta
+	property="og:image"
+	content={image}
+/>
+
+<!-- Twitter Card -->
+<meta
+	name="twitter:card"
+	content="summary_large_image"
+/>
+<meta
+	name="twitter:title"
+	content={title}
+/>
+<meta
+	name="twitter:description"
+	content={description}
+/>
+<meta
+	name="twitter:image"
+	content={image}
+/>
+<meta
+	name="twitter:url"
+	content={url}
+/>
+
+<!-- Structured Data (JSON-LD Schema) -->
+{
+	schema && (
+		<script
+			type="application/ld+json"
+			set:html={schema}
+		/>
+	)
+}

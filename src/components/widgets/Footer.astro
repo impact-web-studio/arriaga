@@ -1,0 +1,226 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '../Logo.astro';
+
+interface Link {
+	text?: string;
+	href?: string;
+	ariaLabel?: string;
+	icon?: string;
+}
+
+interface Links {
+	title?: string;
+	links: Link[];
+}
+
+interface ContactLink {
+	type?: string;
+	value?: string;
+	href?: string;
+}
+
+interface ContactSection {
+	title?: string;
+	links: ContactLink[];
+}
+
+interface SocialLink {
+	type?: string;
+	href?: string;
+}
+
+export interface Props {
+	description: string;
+	links: Links[];
+	contact: ContactSection[];
+	socials: SocialLink[];
+	secondaryLinks?: Link[];
+	footNote?: string;
+}
+
+const {
+	description = '',
+	links = [],
+	contact = [],
+	socials = [],
+	secondaryLinks = [],
+	footNote = '',
+} = Astro.props;
+
+// Helper function to get icon name based on contact type
+const getContactIcon = (type: string) => {
+	switch (type) {
+		case 'phone':
+			return 'tabler:phone';
+		case 'email':
+			return 'tabler:mail';
+		case 'location':
+			return 'tabler:map-pin';
+		default:
+			return null;
+	}
+};
+
+// Helper function to get social icon name
+const getSocialIcon = (type: string) => {
+	switch (type) {
+		case 'facebook':
+			return 'tabler:brand-facebook';
+		case 'instagram':
+			return 'tabler:brand-instagram';
+		case 'linkedin':
+			return 'tabler:brand-linkedin';
+		default:
+			return `tabler:brand-${type}`;
+	}
+};
+---
+
+<footer class="bg-slate-900 text-white">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+			<!-- Company Info Section -->
+			<div class="lg:col-span-1">
+				<div class="mb-6">
+					<a
+						class="inline-block"
+						href="/"
+					>
+						<Logo textColor="text-white" />
+					</a>
+				</div>
+				<p class="text-gray-300 text-sm leading-relaxed mb-8">
+					{description}
+				</p>
+
+				<!-- Social Links -->
+				{
+					socials?.length > 0 && (
+						<div class="flex gap-4">
+							{socials.map(({ type, href }) => (
+								<a
+									href={href}
+									class="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors duration-200"
+									aria-label={`Follow us on ${type}`}
+								>
+									<Icon
+										name={getSocialIcon(type)}
+										class="w-5 h-5 text-gray-300"
+									/>
+								</a>
+							))}
+						</div>
+					)
+				}
+			</div>
+
+			<!-- Services/Links Section -->
+			<div class="lg:col-span-1">
+				{
+					links.map(({ title, links: sectionLinks }) => (
+						<div class="mb-8">
+							<h3 class="text-lg font-semibold text-white mb-4">{title}</h3>
+							{sectionLinks &&
+								Array.isArray(sectionLinks) &&
+								sectionLinks.length > 0 && (
+									<ul class="space-y-3">
+										{sectionLinks.map(({ text, href, ariaLabel }) => (
+											<li>
+												<a
+													class="text-gray-300 hover:text-white transition-colors duration-200"
+													href={href}
+													aria-label={ariaLabel}
+												>
+													{text}
+												</a>
+											</li>
+										))}
+									</ul>
+								)}
+						</div>
+					))
+				}
+			</div>
+
+			<!-- Contact Section -->
+			<div class="lg:col-span-1">
+				{
+					contact.map(({ title, links: contactLinks }) => (
+						<div>
+							<h3 class="text-lg font-semibold text-white mb-4">{title}</h3>
+							{contactLinks &&
+								Array.isArray(contactLinks) &&
+								contactLinks.length > 0 && (
+									<ul class="space-y-4">
+										{contactLinks.map(({ type, value, href }) => {
+											const icon = getContactIcon(type);
+											const isLocation = type === 'location';
+
+											return (
+												<li class="flex items-start gap-3">
+													{icon && (
+														<div class="flex-shrink-0 mt-1">
+															<Icon
+																name={icon}
+																class="w-5 h-5 text-blue-400"
+															/>
+														</div>
+													)}
+													<div>
+														{href && !isLocation ? (
+															<a
+																href={href}
+																class="text-gray-300 hover:text-white transition-colors duration-200"
+															>
+																{value}
+															</a>
+														) : (
+															<span class="text-gray-300">
+																{value}
+																{isLocation && (
+																	<div class="text-sm text-gray-400 mt-1">
+																		Serving 15+ communities
+																	</div>
+																)}
+															</span>
+														)}
+													</div>
+												</li>
+											);
+										})}
+									</ul>
+								)}
+						</div>
+					))
+				}
+			</div>
+		</div>
+
+		<!-- Bottom Section -->
+		<div class="border-t border-slate-800 pt-8 mt-12">
+			<div
+				class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+			>
+				<div class="text-sm text-gray-400">
+					{footNote || '© 2025 Premier Renovations. All rights reserved.'}
+				</div>
+
+				{
+					secondaryLinks?.length > 0 && (
+						<div class="flex flex-wrap gap-6 text-sm">
+							{secondaryLinks.map(({ text, href }) => (
+								<a
+									href={href}
+									class="text-gray-400 hover:text-white transition-colors duration-200"
+								>
+									{text}
+								</a>
+							))}
+						</div>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</footer>
