@@ -11,6 +11,7 @@ import Hero from '~/components/widgets/Hero.astro';
 				variant: 'primary',
 				text: 'Get a Free Estimate',
 				href: '#contact',
+				icon: 'lucide:arrow-right',
 			},
 			{
 				variant: 'secondary',
@@ -22,5 +23,11 @@ import Hero from '~/components/widgets/Hero.astro';
 			src: '~/assets/premier-hero-bg.jpeg',
 			alt: 'Premier Renovations Hero Image',
 		}}
-	/>
+		badges
+	>
+		<Fragment slot="title">
+			Bring Your Dream Home to
+			<span class="text-yellow-300">Life</span>
+		</Fragment>
+	</Hero>
 </Layout>

@@ -1,0 +1,8 @@
+export const company = {
+	name: 'Premier Renovations',
+	tagline:
+		'Trusted renovations with craftsmanship you can count on. Transform your space with our expert team.',
+	phone: '3163304092',
+	phoneDisplay: '+1 (316) 330-4092',
+	email: 'portfolio@worksiteleads.com',
+};

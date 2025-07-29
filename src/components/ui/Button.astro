@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-	variant = 'secondary',
+	variant = 'primary',
 	target,
 	text = Astro.slots.render('default'),
 	icon = '',
@@ -21,7 +21,8 @@ const {
 } = Astro.props as Props;
 
 const variants = {
-	primary: 'btn-primary',
+	primary:
+		'bg-accent-500 text-accent-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-400 transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1',
 	secondary: 'btn-secondary',
 	tertiary: 'btn btn-tertiary',
 	link: 'cursor-pointer hover:text-primary',
