@@ -35,7 +35,7 @@ const {
 									{Array.from({ length: 5 }).map((_, i) => (
 										<Icon
 											name="lucide:star"
-											class="h-5 w-5 fill-yellow-300 text-yellow-300"
+											class="lucide-star h-5 w-5 fill-accent-400 text-accent-400 stroke-accent-400"
 										/>
 									))}
 									<span class="ml-2 text-accent-100 font-medium">
@@ -124,7 +124,7 @@ const {
 								<div class="flex items-center space-x-2">
 									<Icon
 										name="lucide:star"
-										class="h-5 w-5 text-accent-400"
+										class="h-5 w-5 fill-accent-400 text-accent-400"
 									/>
 									<span>500+ Happy Customers</span>
 								</div>
@@ -178,3 +178,11 @@ const {
 		}
 	</style>
 </section>
+
+<style>
+	.lucide-star {
+		path {
+			fill: currentColor;
+		}
+	}
+</style>

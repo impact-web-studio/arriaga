@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-	variant = 'primary',
+	variant = 'secondary',
 	target,
 	text = Astro.slots.render('default'),
 	icon = '',
@@ -23,7 +23,8 @@ const {
 const variants = {
 	primary:
 		'bg-accent-500 text-accent-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-400 transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1',
-	secondary: 'btn-secondary',
+	secondary:
+		'border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary-900 transition-all duration-300',
 	tertiary: 'btn btn-tertiary',
 	link: 'cursor-pointer hover:text-primary',
 };
