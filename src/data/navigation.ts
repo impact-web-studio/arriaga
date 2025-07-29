@@ -1,62 +1,114 @@
-export const headerData = {
-	links: [
+export type NavigationLink = {
+	text: string;
+	href?: string;
+	target?: string;
+	ariaLabel?: string;
+	icon?: string;
+	scrollTo?: string; // For smooth scrolling to sections
+	links?: NavigationLink[]; // For dropdown menus
+};
+
+export type ContactInfo = {
+	type: 'phone' | 'email' | 'address';
+	value: string;
+	href?: string;
+	icon?: string;
+};
+
+export type NavigationAction = {
+	text: string;
+	href?: string;
+	target?: string;
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
+	scrollTo?: string;
+	ariaLabel?: string;
+};
+
+export const navigationData = {
+	// Contact information for top bar
+	contactInfo: [
+		{
+			type: 'phone' as const,
+			value: '(316) 330-4092',
+			href: 'tel:+13163304092',
+			icon: 'lucide:phone',
+		},
+		{
+			type: 'email' as const,
+			value: 'portfolio@worksiteleads.com',
+			href: 'mailto:portfolio@worksiteleads.com',
+			icon: 'lucide:mail',
+		},
+	] as ContactInfo[],
+
+	// Main navigation links
+	mainNavigation: [
 		{
 			text: 'Home',
-			href: '/',
+			scrollTo: 'home',
+			ariaLabel: 'Go to home section',
 		},
 		{
 			text: 'About',
-			href: '/about',
+			scrollTo: 'about',
+			ariaLabel: 'Learn about our company',
 		},
 		{
 			text: 'Services',
-			href: '/services',
+			scrollTo: 'services',
+			ariaLabel: 'View our services',
 			links: [
 				{
 					text: 'Kitchen Remodeling',
-					href: '/services/kitchen-remodeling',
+					scrollTo: 'services',
+					ariaLabel: 'Kitchen renovation services',
 				},
 				{
 					text: 'Bathroom Renovation',
-					href: '/services/bathroom-renovation',
+					scrollTo: 'services',
+					ariaLabel: 'Bathroom renovation services',
 				},
 				{
 					text: 'Home Additions',
-					href: '/services/home-additions',
+					scrollTo: 'services',
+					ariaLabel: 'Home addition services',
 				},
 				{
-					text: 'Flooring Installation',
-					href: '/services/flooring',
+					text: 'Flooring',
+					scrollTo: 'services',
+					ariaLabel: 'Flooring installation services',
 				},
 			],
 		},
 		{
 			text: 'Projects',
-			href: '/projects',
+			scrollTo: 'projects',
+			ariaLabel: 'View our portfolio',
 		},
 		{
 			text: 'Reviews',
-			href: '/reviews',
+			scrollTo: 'testimonials',
+			ariaLabel: 'Read customer testimonials',
 		},
-	],
+	] as NavigationLink[],
+
+	// CTA actions
 	actions: [
 		{
 			text: 'Get Free Estimate',
-			href: '/estimate',
-			target: '_blank',
+			scrollTo: 'contact',
+			variant: 'primary' as const,
+			ariaLabel: 'Get a free project estimate',
 		},
-	],
-	information: [
-		{
-			type: 'phone',
-			value: '+1 (316) 330-4092',
-			href: 'tel:+13163304092',
-		},
-		{
-			type: 'email',
-			value: 'portfolio@worksiteleads.com',
-		},
-	],
+	] as NavigationAction[],
+
+	// Brand/Logo configuration
+	brand: {
+		name: 'Premier',
+		accent: 'Renovations',
+		href: '/',
+		ariaLabel: 'Premier Renovations - Home',
+	},
 };
 
 export const footerData = {

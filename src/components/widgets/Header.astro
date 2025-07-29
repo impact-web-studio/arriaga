@@ -1,44 +1,45 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Logo from '~/components/Logo.astro';
-import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
+import {
+	navigationData,
+	type NavigationLink,
+	type ContactInfo,
+	type NavigationAction,
+} from '~/data/navigation';
 
-type Link = {
-	text?: string;
-	href?: string;
-	ariaLabel?: string;
-	icon?: string;
-	links?: Link[];
-};
-
-type Action = {
-	text?: string;
-	href?: string;
-	target?: string;
-};
-
-type Information = {
-	type: string;
-	value: string;
-};
-
-interface Props {
+export interface Props {
 	id?: string;
-	links?: Link[];
-	actions?: Action[];
-	information?: Information[];
+	showContactBar?: boolean;
+	contactInfo?: ContactInfo[];
+	links?: NavigationLink[];
+	actions?: NavigationAction[];
+	brand?: {
+		name: string;
+		accent?: string;
+		href?: string;
+		ariaLabel?: string;
+	};
+	sticky?: boolean;
+	transparent?: boolean;
 }
 
-const { id, links = [], actions = [], information = [] } = Astro.props as Props;
+const {
+	id,
+	showContactBar = true,
+	contactInfo = navigationData.contactInfo,
+	links = navigationData.mainNavigation,
+	actions = navigationData.actions,
+	brand = navigationData.brand,
+	sticky = true,
+	transparent = false,
+} = Astro.props;
 
 // Simple function to check if link is active
 const isActiveLink = (linkHref: string, currentUrl: URL) => {
-	// Remove trailing slashes for comparison
 	const normalizeUrl = (url: string) => url.replace(/\/$/, '') || '/';
 	const currentPath = normalizeUrl(currentUrl.pathname);
 	const linkPath = normalizeUrl(linkHref);
-
 	return currentPath === linkPath;
 };
 
@@ -46,36 +47,52 @@ const currentUrl = Astro.url;
 ---
 
 <header
-	class="relative top-0 z-40 flex-none mx-auto w-full bg-white border-b border-gray-200 transition-[opacity] ease-in-out"
+	class:list={[
+		'top-0 z-50 flex-none mx-auto w-full transition-all duration-300',
+		{
+			fixed: sticky,
+			relative: !sticky,
+			'bg-transparent': transparent,
+			'bg-white border-b border-gray-200': !transparent,
+		},
+	]}
 	{...id ? { id } : {}}
+	data-header
 >
 	<!-- Contact Information Bar -->
 	{
-		information?.length > 0 && (
-			<div class="bg-gray-50 border-b border-gray-200">
+		showContactBar && contactInfo?.length > 0 && (
+			<div class="bg-gray-50 border-b border-gray-200 hidden md:block">
 				<div class="max-w-7xl mx-auto px-3 md:px-6">
 					<div class="flex justify-end items-center py-2 text-sm text-gray-600">
-						{information.map((info, index) => (
+						{contactInfo.map((info, index) => (
 							<div class="flex items-center">
-								{info.type === 'phone' && (
-									<>
-										<Icon
-											name="tabler:phone"
-											class="w-4 h-4 mr-1"
-										/>
+								{info.href ? (
+									<a
+										href={info.href}
+										class="flex items-center hover:text-primary-600 transition-colors"
+										aria-label={`Contact us: ${info.value}`}
+									>
+										{info.icon && (
+											<Icon
+												name={info.icon}
+												class="w-4 h-4 mr-1"
+											/>
+										)}
 										<span>{info.value}</span>
-									</>
-								)}
-								{info.type === 'email' && (
-									<>
-										<Icon
-											name="tabler:mail"
-											class="w-4 h-4 mr-1"
-										/>
+									</a>
+								) : (
+									<div class="flex items-center">
+										{info.icon && (
+											<Icon
+												name={info.icon}
+												class="w-4 h-4 mr-1"
+											/>
+										)}
 										<span>{info.value}</span>
-									</>
+									</div>
 								)}
-								{index < information.length - 1 && (
+								{index < contactInfo.length - 1 && (
 									<span class="mx-4 text-gray-300">|</span>
 								)}
 							</div>
@@ -87,104 +104,302 @@ const currentUrl = Astro.url;
 	}
 
 	<!-- Main Navigation -->
-	<div>
+	<div class="header-main">
 		<div
 			class="relative text-default py-3 px-3 md:px-6 mx-auto w-full md:grid md:grid-cols-3 md:items-center max-w-7xl"
 		>
-			<div class:list={['mr-auto rtl:mr-0 rtl:ml-auto flex justify-between']}>
+			<!-- Logo/Brand Section -->
+			<div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
 				<a
-					class="flex items-center"
-					href="/"
+					class="flex items-center font-heading font-bold text-2xl text-primary-900"
+					href={brand.href || '/'}
+					aria-label={brand.ariaLabel || `${brand.name} - Home`}
 				>
-					<Logo />
+					{brand.name}{
+						brand.accent && <span class="text-primary-600">{brand.accent}</span>
+					}
 				</a>
+
+				<!-- Mobile Menu Toggle -->
 				<div class="flex items-center md:hidden">
-					<ToggleMenu />
+					<button
+						id="mobile-menu-toggle"
+						class="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+						aria-label="Toggle mobile menu"
+						aria-expanded="false"
+					>
+						<Icon
+							name="lucide:menu"
+							class="w-6 h-6"
+							id="menu-icon"
+						/>
+						<Icon
+							name="lucide:x"
+							class="w-6 h-6 hidden"
+							id="close-icon"
+						/>
+					</button>
 				</div>
 			</div>
+
+			<!-- Desktop Navigation -->
 			<nav
-				class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+				class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default md:justify-self-center"
 				aria-label="Main navigation"
 			>
 				<ul
 					class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
 				>
 					{
-						links.map(({ text, href, links }) => (
-							<li class={links?.length ? 'dropdown' : ''}>
-								{links?.length ? (
-									<>
+						links.map(
+							({ text, href, scrollTo, links: subLinks, ariaLabel }) => (
+								<li
+									class:list={[{ 'dropdown group relative': subLinks?.length }]}
+								>
+									{subLinks?.length ? (
+										<>
+											<button
+												type="button"
+												class="hover:cursor-pointer hover:text-primary-600 px-4 py-3 flex items-center whitespace-nowrap transition-colors"
+												aria-label={ariaLabel || `${text} menu`}
+											>
+												{text}
+												<Icon
+													name="lucide:chevron-down"
+													class="w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180"
+												/>
+											</button>
+											<ul class="absolute top-full left-0 min-w-[200px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+												{subLinks.map(
+													({
+														text: subText,
+														href: subHref,
+														scrollTo: subScrollTo,
+														ariaLabel: subAriaLabel,
+													}) => (
+														<li>
+															<button
+																class="hover:cursor-pointer w-full text-left px-4 py-3 hover:bg-gray-50 hover:text-primary-600 transition-colors first:rounded-t-lg last:rounded-b-lg"
+																data-scroll-to={subScrollTo}
+																aria-label={subAriaLabel || `Go to ${subText}`}
+															>
+																{subText}
+															</button>
+														</li>
+													)
+												)}
+											</ul>
+										</>
+									) : (
 										<button
-											type="button"
-											class="hover:text-link px-4 py-3 flex items-center whitespace-nowrap"
+											class:list={[
+												'hover:cursor-pointer hover:text-primary-600 px-4 py-3 flex items-center whitespace-nowrap transition-colors',
+												{
+													'text-primary-600 font-semibold':
+														href && isActiveLink(href, currentUrl),
+												},
+											]}
+											data-scroll-to={scrollTo}
+											aria-label={ariaLabel || `Go to ${text}`}
 										>
-											{text}{' '}
-											<Icon
-												name="tabler:chevron-down"
-												class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline"
-											/>
+											{text}
 										</button>
-										<ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-											{links.map(({ text: text2, href: href2 }) => (
-												<li>
-													<a
-														class:list={[
-															'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link py-2 px-5 block whitespace-no-wrap',
-															{
-																'aw-link-active':
-																	href2 && isActiveLink(href2, currentUrl),
-															},
-														]}
-														href={href2}
-													>
-														{text2}
-													</a>
-												</li>
-											))}
-										</ul>
-									</>
-								) : (
-									<a
-										class:list={[
-											'hover:text-link px-4 py-3 flex items-center whitespace-nowrap',
-											{
-												'aw-link-active':
-													href && isActiveLink(href, currentUrl),
-											},
-										]}
-										href={href}
-									>
-										{text}
-									</a>
-								)}
-							</li>
-						))
+									)}
+								</li>
+							)
+						)
 					}
 				</ul>
 			</nav>
+
+			<!-- Desktop Actions -->
 			<div
-				class:list={[
-					'ml-auto rtl:ml-0 rtl:mr-auto',
-					'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
-				]}
+				class="ml-auto rtl:ml-0 rtl:mr-auto hidden md:self-center md:flex items-center md:justify-self-end"
 			>
-				<div class="items-center flex justify-between w-full md:w-auto">
-					{
-						actions?.length ? (
-							<span class="ml-4 rtl:ml-0 rtl:mr-4">
-								{actions.map((btnProps) => (
-									<Button
-										variant="tertiary"
-										{...btnProps}
-									/>
-								))}
-							</span>
-						) : (
-							''
-						)
-					}
-				</div>
+				{
+					actions?.length > 0 && (
+						<div class="flex items-center space-x-3">
+							{actions.map((action) => (
+								<Button
+									{...action}
+									data-scroll-to={action.scrollTo}
+									class="transition-all duration-300"
+									variant="tertiary"
+								/>
+							))}
+						</div>
+					)
+				}
+			</div>
+		</div>
+
+		<!-- Mobile Navigation Menu -->
+		<div
+			id="mobile-menu"
+			class="md:hidden border-t border-gray-200 bg-white hidden"
+		>
+			<div class="px-4 py-4 space-y-3">
+				{
+					links.map(({ text, href, scrollTo, links: subLinks, ariaLabel }) => (
+						<div>
+							{subLinks?.length ? (
+								<>
+									<div class="font-medium text-gray-900 py-2">{text}</div>
+									<div class="pl-4 space-y-2">
+										{subLinks.map(
+											({
+												text: subText,
+												scrollTo: subScrollTo,
+												ariaLabel: subAriaLabel,
+											}) => (
+												<button
+													class="hover:cursor-pointer block text-left text-gray-600 hover:text-primary-600 py-1 transition-colors"
+													data-scroll-to={subScrollTo}
+													aria-label={subAriaLabel || `Go to ${subText}`}
+												>
+													{subText}
+												</button>
+											)
+										)}
+									</div>
+								</>
+							) : (
+								<button
+									class="hover:cursor-pointer block text-left text-gray-900 hover:text-primary-600 py-2 font-medium transition-colors"
+									data-scroll-to={scrollTo}
+									aria-label={ariaLabel || `Go to ${text}`}
+								>
+									{text}
+								</button>
+							)}
+						</div>
+					))
+				}
+
+				<!-- Mobile Actions -->
+				{
+					actions?.length > 0 && (
+						<div class="pt-4 border-t border-gray-200 space-y-3">
+							{actions.map((action) => (
+								<Button
+									{...action}
+									data-scroll-to={action.scrollTo}
+									class="w-full justify-center"
+								/>
+							))}
+						</div>
+					)
+				}
+
+				<!-- Mobile Contact Info -->
+				{
+					contactInfo?.length > 0 && (
+						<div class="pt-4 border-t border-gray-200 space-y-2">
+							{contactInfo.map((info) =>
+								info.href ? (
+									<a
+										href={info.href}
+										class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+										aria-label={`Contact us: ${info.value}`}
+									>
+										{info.icon && (
+											<Icon
+												name={info.icon}
+												class="w-4 h-4 mr-2"
+											/>
+										)}
+										<span>{info.value}</span>
+									</a>
+								) : (
+									<div class="flex items-center text-gray-600">
+										{info.icon && (
+											<Icon
+												name={info.icon}
+												class="w-4 h-4 mr-2"
+											/>
+										)}
+										<span>{info.value}</span>
+									</div>
+								)
+							)}
+						</div>
+					)
+				}
 			</div>
 		</div>
 	</div>
 </header>
+
+<script>
+	// Mobile menu functionality
+	const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const menuIcon = document.getElementById('menu-icon');
+	const closeIcon = document.getElementById('close-icon');
+	let isMobileMenuOpen = false;
+
+	mobileMenuToggle?.addEventListener('click', () => {
+		isMobileMenuOpen = !isMobileMenuOpen;
+
+		if (isMobileMenuOpen) {
+			mobileMenu?.classList.remove('hidden');
+			menuIcon?.classList.add('hidden');
+			closeIcon?.classList.remove('hidden');
+			mobileMenuToggle?.setAttribute('aria-expanded', 'true');
+		} else {
+			mobileMenu?.classList.add('hidden');
+			menuIcon?.classList.remove('hidden');
+			closeIcon?.classList.add('hidden');
+			mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+		}
+	});
+
+	// Header scroll effects
+	const header = document.querySelector('[data-header]') as HTMLElement;
+	let isScrolled = false;
+
+	const handleScroll = () => {
+		const currentScrolled = window.scrollY > 50;
+		if (currentScrolled !== isScrolled) {
+			isScrolled = currentScrolled;
+			if (isScrolled) {
+				header?.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+			} else {
+				header?.classList.remove(
+					'bg-white/95',
+					'backdrop-blur-sm',
+					'shadow-lg'
+				);
+			}
+		}
+	};
+
+	window.addEventListener('scroll', handleScroll);
+
+	// Smooth scroll functionality
+	const scrollToSection = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+			// Close mobile menu if open
+			if (isMobileMenuOpen) {
+				isMobileMenuOpen = false;
+				mobileMenu?.classList.add('hidden');
+				menuIcon?.classList.remove('hidden');
+				closeIcon?.classList.add('hidden');
+				mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+			}
+		}
+	};
+
+	// Add click listeners to all scroll buttons
+	document.querySelectorAll('[data-scroll-to]').forEach((button) => {
+		button.addEventListener('click', (e) => {
+			const target = (e.target as HTMLElement).getAttribute('data-scroll-to');
+			if (target) {
+				e.preventDefault();
+				scrollToSection(target);
+			}
+		});
+	});
+</script>
