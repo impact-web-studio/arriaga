@@ -1,0 +1,169 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from '~/components/ui/Button.astro';
+
+const services = [
+	{
+		icon: 'lucide:chef-hat',
+		title: 'Kitchen Renovation',
+		description:
+			'Transform your kitchen into the heart of your home with custom cabinets, modern appliances, and stunning countertops.',
+		image:
+			'https://images.pexels.com/photos/2062431/pexels-photo-2062431.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+		features: [
+			'Custom Cabinetry',
+			'Quartz Countertops',
+			'Modern Appliances',
+			'Smart Storage Solutions',
+		],
+	},
+	{
+		icon: 'lucide:waves',
+		title: 'Bathroom Remodel',
+		description:
+			'Create a spa-like retreat with luxurious fixtures, elegant tilework, and efficient layouts designed for comfort.',
+		image:
+			'https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+		features: [
+			'Walk-in Showers',
+			'Double Vanities',
+			'Heated Floors',
+			'Custom Tile Work',
+		],
+	},
+	{
+		icon: 'lucide:home',
+		title: 'Basement Finishing',
+		description:
+			'Expand your living space with a professionally finished basement perfect for entertainment or additional bedrooms.',
+		image:
+			'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+		features: [
+			'Moisture Control',
+			'Egress Windows',
+			'Built-in Storage',
+			'Home Theater Setup',
+		],
+	},
+	{
+		icon: 'lucide:wrench',
+		title: 'Full Home Remodels',
+		description:
+			'Complete home transformations from concept to completion, reimagining your entire living space.',
+		image:
+			'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+		features: [
+			'Architectural Planning',
+			'Structural Changes',
+			'Systems Upgrades',
+			'Interior Design',
+		],
+	},
+];
+
+const scrollToContact = () => {
+	const el = document.getElementById('contact');
+	el?.scrollIntoView({ behavior: 'smooth' });
+};
+---
+
+<section
+	id="services"
+	class="py-20 bg-secondary-50"
+>
+	<div class="container mx-auto px-4">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-16">
+				<h2
+					class="font-heading text-4xl md:text-5xl font-bold text-secondary-900 mb-6"
+				>
+					Our Services
+				</h2>
+				<p class="text-xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
+					From single room updates to complete home transformations, we bring
+					expertise and craftsmanship to every project, large or small.
+				</p>
+			</div>
+
+			<div class="grid md:grid-cols-2 gap-8">
+				{
+					services.map((service, index) => (
+						<div
+							class="service-card bg-white rounded-2xl overflow-hidden shadow-lg"
+							key={index}
+						>
+							<div class="relative">
+								<img
+									src={service.image}
+									alt={service.title}
+									class="w-full h-64 object-cover"
+									loading="lazy"
+								/>
+								<div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3">
+									<Icon
+										name={service.icon}
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+							</div>
+
+							<div class="p-8">
+								<h3 class="font-heading text-2xl font-bold text-secondary-900 mb-4">
+									{service.title}
+								</h3>
+
+								<p class="text-secondary-600 mb-6 leading-relaxed">
+									{service.description}
+								</p>
+
+								<ul class="space-y-2 mb-6">
+									{service.features.map((feature, i) => (
+										<li
+											class="flex items-center text-sm text-secondary-700"
+											key={i}
+										>
+											<div class="w-2 h-2 bg-primary-600 rounded-full mr-3" />
+											{feature}
+										</li>
+									))}
+								</ul>
+
+								<button
+									type="button"
+									class="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors group"
+								>
+									<span>Learn More</span>
+									<Icon
+										name="lucide:arrow-right"
+										class="h-4 w-4 group-hover:translate-x-1 transition-transform"
+									/>
+								</button>
+							</div>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="text-center mt-12">
+				<Button
+					type="button"
+					variant="tertiary"
+					class="px-8 py-4 rounded-lg text-lg hover:bg-primary-700 transition-colors shadow-lg"
+				>
+					Get Your Free Consultation
+				</Button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.service-card {
+		transition: all 0.3s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+	}
+</style>
