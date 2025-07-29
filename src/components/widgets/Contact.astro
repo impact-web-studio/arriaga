@@ -1,0 +1,282 @@
+---
+import { Icon } from 'astro-icon/components';
+
+let isSubmitted = false;
+---
+
+<section
+	id="contact"
+	class="py-20 bg-secondary-50"
+>
+	<div class="container mx-auto px-4">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-16">
+				<h2
+					class="font-heading text-4xl md:text-5xl font-bold text-secondary-900 mb-6"
+				>
+					Get Your Free Estimate
+				</h2>
+				<p class="text-xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
+					Ready to transform your home? Contact us today for a free consultation
+					and detailed estimate. We'll work with you to bring your vision to
+					life.
+				</p>
+			</div>
+
+			<div class="grid lg:grid-cols-2 gap-12">
+				<!-- Contact Form -->
+				<div class="bg-white rounded-2xl shadow-xl p-8">
+					<h3 class="font-heading text-2xl font-bold text-secondary-900 mb-6">
+						Request Your Free Consultation
+					</h3>
+
+					<div
+						id="confirmation"
+						class="hidden text-center py-8"
+					>
+						<Icon
+							name="lucide:check-circle"
+							class="h-16 w-16 text-green-500 mx-auto mb-4"
+						/>
+						<h4 class="font-heading text-xl font-bold text-secondary-900 mb-2">
+							Thank You!
+						</h4>
+						<p class="text-secondary-600">
+							We've received your request and will contact you within 24 hours.
+						</p>
+					</div>
+
+					<form
+						id="contact-form"
+						class="space-y-6"
+					>
+						<div class="grid md:grid-cols-2 gap-6">
+							<div>
+								<label
+									for="name"
+									class="block text-sm font-medium text-secondary-700 mb-2"
+									>Full Name *</label
+								>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									required
+									class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+									placeholder="Your full name"
+								/>
+							</div>
+
+							<div>
+								<label
+									for="phone"
+									class="block text-sm font-medium text-secondary-700 mb-2"
+									>Phone Number *</label
+								>
+								<input
+									type="tel"
+									id="phone"
+									name="phone"
+									required
+									class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+									placeholder="(123) 456-7890"
+								/>
+							</div>
+						</div>
+
+						<div>
+							<label
+								for="email"
+								class="block text-sm font-medium text-secondary-700 mb-2"
+								>Email Address *</label
+							>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								required
+								class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+								placeholder="your@email.com"
+							/>
+						</div>
+
+						<div>
+							<label
+								for="service"
+								class="block text-sm font-medium text-secondary-700 mb-2"
+								>Service Interested In</label
+							>
+							<select
+								id="service"
+								name="service"
+								class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+							>
+								<option value="">Select a service</option>
+								<option value="kitchen">Kitchen Renovation</option>
+								<option value="bathroom">Bathroom Remodel</option>
+								<option value="basement">Basement Finishing</option>
+								<option value="whole-home">Full Home Remodel</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+
+						<div>
+							<label
+								for="message"
+								class="block text-sm font-medium text-secondary-700 mb-2"
+								>Project Details</label
+							>
+							<textarea
+								id="message"
+								name="message"
+								rows="4"
+								class="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+								placeholder="Tell us about your project, timeline, and any specific requirements..."
+							></textarea>
+						</div>
+
+						<button
+							type="submit"
+							class="w-full contact-form-gradient text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+						>
+							<Icon
+								name="lucide:send"
+								class="h-5 w-5"
+							/>
+							<span>Send My Request</span>
+						</button>
+
+						<p class="text-sm text-secondary-600 text-center">
+							By submitting this form, you agree to receive communication from
+							Premier Renovations.
+						</p>
+					</form>
+				</div>
+
+				<!-- Contact Info -->
+				<div class="space-y-8">
+					<div class="bg-white rounded-2xl shadow-xl p-8">
+						<h3 class="font-heading text-2xl font-bold text-secondary-900 mb-6">
+							Get In Touch
+						</h3>
+						<div class="space-y-6">
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:phone"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">Phone</h4>
+									<a
+										href="tel:+13163304092"
+										class="text-secondary-600 hover:text-primary-600 transition-colors"
+										>(316) 330-4092</a
+									>
+									<p class="text-sm text-secondary-500">
+										Available 7 days a week
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:mail"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">Email</h4>
+									<a
+										href="mailto:portfolio@worksiteleads.com"
+										class="text-secondary-600 hover:text-primary-600 transition-colors"
+										>portfolio@worksiteleads.com</a
+									>
+									<p class="text-sm text-secondary-500">
+										We respond within 24 hours
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:map-pin"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">
+										Service Area
+									</h4>
+									<p class="text-secondary-600">Greater Metropolitan Area</p>
+									<p class="text-sm text-secondary-500">
+										15+ communities served
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:clock"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">
+										Business Hours
+									</h4>
+									<p class="text-secondary-600">Monday - Friday: 7am - 6pm</p>
+									<p class="text-secondary-600">Saturday: 8am - 4pm</p>
+									<p class="text-secondary-600">Sunday: 9am - 3pm</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="bg-primary-600 text-white rounded-2xl p-8">
+						<h3 class="font-heading text-2xl font-bold mb-4">
+							Emergency Services
+						</h3>
+						<p class="mb-6 text-primary-100">
+							Need urgent repairs? We offer 24/7 emergency services for water
+							damage, structural issues, and other critical home problems.
+						</p>
+						<a
+							href="tel:+13163304092"
+							class="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-block"
+						>
+							Call Emergency Line
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script is:inline>
+	const form = document.getElementById('contact-form');
+	const confirmation = document.getElementById('confirmation');
+
+	form?.addEventListener('submit', (e) => {
+		e.preventDefault();
+		form.classList.add('hidden');
+		confirmation.classList.remove('hidden');
+
+		setTimeout(() => {
+			form.reset();
+			confirmation.classList.add('hidden');
+			form.classList.remove('hidden');
+		}, 3000);
+	});
+</script>
+
+<style>
+	.contact-form-gradient {
+		background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+	}
+</style>
