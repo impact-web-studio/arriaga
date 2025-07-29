@@ -201,3 +201,7 @@
 [data-aw-toggle-menu].expanded g > path:last-child {
 	transform: rotate(45deg) translateY(-8px) translateX(14px);
 }
+
+button {
+	cursor: pointer;
+}

@@ -4,6 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import About from '~/components/widgets/About.astro';
 import Services from '~/components/widgets/Services.astro';
+import Projects from '~/components/widgets/Projects.tsx';
 ---
 
 <Layout>
@@ -34,4 +35,5 @@ import Services from '~/components/widgets/Services.astro';
 	</Hero>
 	<About />
 	<Services />
+	<Projects client:load />
 </Layout>
