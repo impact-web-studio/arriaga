@@ -45,8 +45,8 @@
 	--color-foreground: #0f172a;
 
 	/* Font families */
-	--font-family-heading: Montserrat, system-ui, sans-serif;
-	--font-family-body: 'Open Sans', system-ui, sans-serif;
+	--font-heading: 'Montserrat Variable', sans-serif;
+	--font-body: 'Open Sans Variable', sans-serif;
 
 	/* Custom spacing */
 	--spacing-18: 4.5rem;
