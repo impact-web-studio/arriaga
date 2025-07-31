@@ -1,0 +1,277 @@
+/* GoHighLevel Form Custom CSS - Tailwind Style */
+
+/* Main form container styling */
+#_builder-form {
+	background-color: #ffffff !important;
+	border-radius: 16px !important;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+	padding: 32px !important;
+	max-width: 650px !important;
+	border: none !important;
+}
+
+/* Header styling */
+.form-builder--item.heading-element h3 {
+	font-size: 24px !important;
+	font-weight: 700 !important;
+	color: #111827 !important;
+	margin-bottom: 0px !important;
+	line-height: 1.2 !important;
+}
+
+/* Form field containers */
+.form-field-wrapper {
+	margin-bottom: 16px !important;
+}
+
+/* Labels styling */
+.label-alignment {
+	display: block !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	color: #374151 !important;
+	margin-bottom: 8px !important;
+}
+
+/* Required asterisk styling */
+.label-alignment span {
+	color: #ef4444 !important;
+	margin-left: 2px !important;
+}
+
+/* Input fields styling */
+.form-control {
+	width: 100% !important;
+	padding: 12px 16px !important;
+	border: 1px solid rgb(203 213 225) !important;
+	border-radius: 8px !important;
+	font-size: 16px !important;
+	transition: all 0.2s ease-in-out !important;
+	background-color: #ffffff !important;
+	color: #111827 !important;
+}
+
+/* Input focus states */
+.hl-app .form-builder--item .form-control:focus,
+.hl-app #_builder-form .form-builder--item textarea {
+	/* Tailwind’s focus:ring-primary-500 */
+	--tw-ring-color: rgb(59 130 246 / 1); /* same as primary-500 */
+	--tw-ring-offset-width: 0px;
+	--tw-ring-offset-color: #fff;
+	--tw-ring-shadow: 0 0 0 calc(2px + var(--tw-ring-offset-width))
+		var(--tw-ring-color);
+	--tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width)
+		var(--tw-ring-offset-color);
+	box-shadow:
+		var(--tw-ring-offset-shadow),
+		var(--tw-ring-shadow),
+		0 0 #0000 !important;
+
+	/* Tailwind’s focus:border-transparent */
+	border-color: transparent !important;
+}
+
+/* Placeholder styling */
+.form-control::placeholder {
+	color: #9ca3af !important;
+	opacity: 1 !important;
+}
+
+/* Textarea specific styling */
+textarea.form-control {
+	resize: none !important;
+	min-height: 120px !important;
+}
+
+/* Multiselect dropdown styling */
+.multiselect {
+	width: 100% !important;
+	border: 1px solid rgb(203 213 225) !important;
+	border-radius: 8px !important;
+	background-color: #ffffff !important;
+	transition: all 0.2s ease-in-out !important;
+}
+
+.multiselect:focus-within {
+	/* Tailwind’s focus:ring-primary-500 */
+	--tw-ring-opacity: 1;
+	--tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity, 1));
+
+	/* Tailwind’s focus:ring-2 */
+	--tw-ring-inset: var(--tw-ring-inset, '');
+	--tw-ring-offset-width: 0px;
+	--tw-ring-offset-color: #fff;
+	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+		var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+		calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	--tw-shadow: 0 0 #0000;
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+		var(--tw-shadow);
+
+	/* Tailwind’s focus:border-transparent */
+	border-color: transparent;
+}
+
+.multiselect__tags {
+	padding: 12px 16px !important;
+	background-color: transparent !important;
+	border: none !important;
+	min-height: auto !important;
+}
+
+.multiselect__placeholder {
+	color: #9ca3af !important;
+	font-size: 16px !important;
+	margin-bottom: 0 !important;
+}
+
+.multiselect__input {
+	font-size: 16px !important;
+	color: #111827 !important;
+	background-color: transparent !important;
+}
+
+.multiselect__select {
+	width: 40px !important;
+	height: 38px !important;
+	background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")
+		no-repeat center !important;
+	background-size: 16px 16px !important;
+}
+
+.multiselect__select:before {
+	display: none !important;
+}
+
+/* Dropdown options */
+.multiselect__content-wrapper {
+	border: 1px solid rgb(203 213 225) !important;
+	border-top: none !important;
+	border-radius: 0 0 8px 8px !important;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+	background-color: #ffffff !important;
+}
+
+.multiselect__option {
+	padding: 12px 16px !important;
+	font-size: 16px !important;
+	color: #111827 !important;
+	transition: background-color 0.2s ease-in-out !important;
+}
+
+.multiselect__option--highlight {
+	background-color: #f3f4f6 !important;
+	color: #111827 !important;
+}
+
+.multiselect__option:hover {
+	background-color: #f3f4f6 !important;
+}
+
+/* Submit button styling */
+.btn.btn-dark.button-element {
+	background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+	border: none !important;
+	border-radius: 8px !important;
+	padding: 16px 32px !important;
+	width: 100% !important;
+	font-size: 18px !important;
+	color: #ffffff !important;
+	cursor: pointer !important;
+	transition: all 0.3s ease-in-out !important;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn.btn-dark.button-element:hover {
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+	transform: translateY(-1px) !important;
+}
+
+.btn.btn-dark.button-element p {
+	margin: 0 !important;
+	font-size: 18px !important;
+	font-weight: 600 !important;
+}
+
+/* Checkbox container styling */
+.checkbox-container {
+	display: flex !important;
+	align-items: flex-start !important;
+	gap: 12px !important;
+}
+
+.checkbox-container input[type='checkbox'] {
+	width: 16px !important;
+	height: 16px !important;
+	margin: 0 !important;
+	margin-top: 4px !important;
+	flex-shrink: 0 !important;
+}
+
+.checkbox-container span {
+	font-size: 14px !important;
+	line-height: 1.5 !important;
+	color: #6b7280 !important;
+	margin-left: 0 !important;
+}
+
+/* Footer links styling */
+.text-element a {
+	text-decoration: none !important;
+	font-size: 14px !important;
+	transition: color 0.2s ease-in-out !important;
+}
+
+.text-element a:hover {
+	color: #3b82f6 !important;
+}
+
+/* Grid layout improvements */
+.fields-container.row {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	gap: 0 16px !important;
+}
+
+.col-6 {
+	flex: 0 0 calc(50% - 8px) !important;
+	max-width: calc(50% - 8px) !important;
+}
+
+.col-12 {
+	flex: 0 0 100% !important;
+	max-width: 100% !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+	.col-6 {
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+
+	.fields-container.row {
+		gap: 0 !important;
+	}
+}
+
+/* Remove default margins and ensure consistent spacing */
+.form-field-container {
+	margin: 0 !important;
+}
+
+.f-odd,
+.f-even {
+	background: transparent !important;
+}
+
+/* Ensure proper text styling in header elements */
+.text-element div {
+	margin: 0 !important;
+}
+
+.text-element h3,
+.text-element p {
+	margin: 0 !important;
+}
