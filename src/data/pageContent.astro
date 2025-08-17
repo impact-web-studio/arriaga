@@ -1,14 +1,16 @@
 ---
 import { company } from '~/data/client/clientConfig';
 
-const {} = Astro.props;
+const { heroContentCustom } = Astro.props;
 
 export const companyLogo = {
 	default: 'Premier',
 	secondary: 'Renovations',
 };
 
-export const HeroContent = {
+// Hero Section Content
+
+const HeroContentDefaults = {
 	rating: 5.0,
 	licensed: true,
 	insured: true,
@@ -32,6 +34,28 @@ export const HeroContent = {
 		yearsOfExp: 25,
 		certification: 'Fully Licensed & Bonded',
 		happyCustomerCount: 500,
+	},
+};
+
+export const heroContent = heroContentCustom
+	? heroContentCustom
+	: HeroContentDefaults;
+
+// About Section Content
+export const AboutContent = {
+	title: `About ${company.name}`,
+	description: `With over 25 years of experience, we've built our reputation on quality craftsmanship, transparent communication, and turning our clients' visions into reality.`,
+	content: {
+		image: '',
+		title: '',
+		body: '',
+		tags: [],
+		stats: [
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+		],
 	},
 };
 ---
