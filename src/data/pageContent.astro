@@ -1,45 +1,96 @@
 ---
 import { company } from '~/data/client/clientConfig';
 
+// Helper Functions
+// Helper function > Deep Merge: to deep merge objects
+function deepMerge(target, source) {
+	const result = { ...target };
+
+	for (const key in source) {
+		if (
+			source[key] &&
+			typeof source[key] === 'object' &&
+			!Array.isArray(source[key])
+		) {
+			result[key] = deepMerge(target[key] || {}, source[key]);
+		} else {
+			result[key] = source[key];
+		}
+	}
+
+	return result;
+}
+
 const { heroContentCustom } = Astro.props;
 
 export const companyLogo = {
-	default: 'Premier',
-	secondary: 'Renovations',
+	defaultColor: 'Premier',
+	altColor: 'Renovations',
 };
 
 // Hero Section Content
 
 const HeroContentDefaults = {
-	rating: 5.0,
-	licensed: true,
-	insured: true,
+	badges: [
+		{
+			name: 'rating',
+			value: '50.',
+		},
+		{
+			name: 'licensed & insured',
+			value: true,
+		},
+	],
 	headline: {
-		default: 'Bring Your Dream Home to',
-		accent: 'Life',
+		defaultColor: 'Bring Your Dream Home to',
+		altColor: 'Life',
 	},
-	actions: {
-		primary: {
+	backgroundImage: {
+		src: '~/assets/premier-hero-bg.jpeg',
+		alt: 'Premier Renovations Hero Image',
+	},
+	actions: [
+		{
+			variant: 'primary',
 			text: 'Get a Free Estimate',
-			buttonVariant: 'primary',
-			href: '/contact',
+			href: '#contact',
+			icon: 'lucide:arrow-right',
 		},
-		secondary: {
-			text: `Call Now: ${company.phoneDisplay}`,
-			buttonVariant: 'secondary',
-			href: `tel:${company.phone}`,
+		{
+			variant: 'secondary',
+			text: 'Call Now: (316) 330-4092',
+			href: 'tel:+13163304092',
 		},
-	},
-	stats: {
-		yearsOfExp: 25,
-		certification: 'Fully Licensed & Bonded',
-		happyCustomerCount: 500,
-	},
+	],
+	stats: [
+		{
+			name: 'years experience',
+			value: '25+',
+			icon: '',
+		},
+		{
+			name: 'fully licensed & bonded',
+			value: true,
+			icon: '',
+		},
+		{
+			name: 'happy customers',
+			value: '500+',
+			icon: '',
+		},
+	],
 };
 
-export const heroContent = heroContentCustom
-	? heroContentCustom
+console.log('content merge', heroContentCustom);
+
+// Calculate the merged hero content
+const heroContent = heroContentCustom
+	? deepMerge(HeroContentDefaults, heroContentCustom)
 	: HeroContentDefaults;
+
+// Export the merged hero content
+console.log('content merge', heroContent);
+export { heroContent };
 
 // About Section Content
 export const AboutContent = {
