@@ -1,0 +1,37 @@
+---
+import { company } from '~/data/client/clientConfig';
+
+const {} = Astro.props;
+
+export const companyLogo = {
+	default: 'Premier',
+	secondary: 'Renovations',
+};
+
+export const HeroContent = {
+	rating: 5.0,
+	licensed: true,
+	insured: true,
+	headline: {
+		default: 'Bring Your Dream Home to',
+		accent: 'Life',
+	},
+	actions: {
+		primary: {
+			text: 'Get a Free Estimate',
+			buttonVariant: 'primary',
+			href: '/contact',
+		},
+		secondary: {
+			text: `Call Now: ${company.phoneDisplay}`,
+			buttonVariant: 'secondary',
+			href: `tel:${company.phone}`,
+		},
+	},
+	stats: {
+		yearsOfExp: 25,
+		certification: 'Fully Licensed & Bonded',
+		happyCustomerCount: 500,
+	},
+};
+---
