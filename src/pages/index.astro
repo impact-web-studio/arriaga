@@ -11,14 +11,23 @@ import Testimonials from '~/components/widgets/Testimonials';
 import WhyChooseUs from '~/components/widgets/WhyChooseUs.astro';
 import CTA from '~/components/widgets/CTA.astro';
 import Contact from '~/components/widgets/Contact.astro';
-
-// Content & Data
-import { heroContent } from '~/data/pageContent.astro';
 ---
 
 <Layout>
 	<Hero
-		actions={heroContent}
+		actions={[
+			{
+				variant: 'primary',
+				text: 'Get a Free Estimate',
+				href: '#contact',
+				icon: 'lucide:arrow-right',
+			},
+			{
+				variant: 'secondary',
+				text: 'Call Now: (316) 330-4092',
+				href: 'tel:+13163304092',
+			},
+		]}
 		backgroundImage={{
 			src: '~/assets/premier-hero-bg.jpeg',
 			alt: 'Premier Renovations Hero Image',
