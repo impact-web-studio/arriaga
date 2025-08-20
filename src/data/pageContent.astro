@@ -1,7 +1,6 @@
 ---
 import { company } from '~/data/client/clientConfig';
 
-// Helper Functions
 // Helper function > Deep Merge: to deep merge objects
 function deepMerge(target, source) {
 	const result = { ...target };
@@ -29,12 +28,11 @@ export const companyLogo = {
 };
 
 // Hero Section Content
-
 const HeroContentDefaults = {
 	badges: [
 		{
 			name: 'rating',
-			value: '50.',
+			value: '5.0',
 		},
 		{
 			name: 'licensed & insured',
@@ -91,6 +89,7 @@ const heroContent = heroContentCustom
 // Export the merged hero content
 console.log('content merge', heroContent);
 export { heroContent };
+console.log('hero content export', heroContent);
 
 // About Section Content
 export const AboutContent = {
@@ -98,6 +97,7 @@ export const AboutContent = {
 	description: `With over 25 years of experience, we've built our reputation on quality craftsmanship, transparent communication, and turning our clients' visions into reality.`,
 	content: {
 		image: '',
+		alt: '',
 		title: '',
 		body: '',
 		tags: [],
