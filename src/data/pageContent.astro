@@ -1,0 +1,112 @@
+---
+import { company } from '~/data/client/clientConfig';
+
+// Helper function > Deep Merge: to deep merge objects
+function deepMerge(target, source) {
+	const result = { ...target };
+
+	for (const key in source) {
+		if (
+			source[key] &&
+			typeof source[key] === 'object' &&
+			!Array.isArray(source[key])
+		) {
+			result[key] = deepMerge(target[key] || {}, source[key]);
+		} else {
+			result[key] = source[key];
+		}
+	}
+
+	return result;
+}
+
+const { heroContentCustom } = Astro.props;
+
+export const companyLogo = {
+	defaultColor: 'Premier',
+	altColor: 'Renovations',
+};
+
+// Hero Section Content
+const HeroContentDefaults = {
+	badges: [
+		{
+			name: 'rating',
+			value: '5.0',
+		},
+		{
+			name: 'licensed & insured',
+			value: true,
+		},
+	],
+	headline: {
+		defaultColor: 'Bring Your Dream Home to',
+		altColor: 'Life',
+	},
+	backgroundImage: {
+		src: '~/assets/premier-hero-bg.jpeg',
+		alt: 'Premier Renovations Hero Image',
+	},
+	actions: [
+		{
+			variant: 'primary',
+			text: 'Get a Free Estimate',
+			href: '#contact',
+			icon: 'lucide:arrow-right',
+		},
+		{
+			variant: 'secondary',
+			text: 'Call Now: (316) 330-4092',
+			href: 'tel:+13163304092',
+		},
+	],
+	stats: [
+		{
+			name: 'years experience',
+			value: '25+',
+			icon: '',
+		},
+		{
+			name: 'fully licensed & bonded',
+			value: true,
+			icon: '',
+		},
+		{
+			name: 'happy customers',
+			value: '500+',
+			icon: '',
+		},
+	],
+};
+
+console.log('content merge', heroContentCustom);
+
+// Calculate the merged hero content
+const heroContent = heroContentCustom
+	? deepMerge(HeroContentDefaults, heroContentCustom)
+	: HeroContentDefaults;
+
+// Export the merged hero content
+console.log('content merge', heroContent);
+export { heroContent };
+console.log('hero content export', heroContent);
+
+// About Section Content
+export const AboutContent = {
+	title: `About ${company.name}`,
+	description: `With over 25 years of experience, we've built our reputation on quality craftsmanship, transparent communication, and turning our clients' visions into reality.`,
+	content: {
+		image: '',
+		alt: '',
+		title: '',
+		body: '',
+		tags: [],
+		stats: [
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+			{ icon: '', number: '', description: '' },
+		],
+	},
+};
+---
