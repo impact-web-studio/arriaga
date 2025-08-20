@@ -1,7 +1,11 @@
 {
-	"companyName": Worksite Leads,
-	"tagline": Tagline placeholder,
-	"phone": +01231231234,
-	"phoneDisplay": +0(123)123-1234,
-	"email": portfolio@worksiteleads.com
+	"companyName": "Worksite Leads",
+	"logoConfig": {
+		"defaultColor": "Worksite",
+		"altColor": "Leads"
+	},
+	"tagline": "Tagline placeholder",
+	"phone": "+01231231234",
+	"phoneDisplay": "+0(123)123-1234",
+	"email": "portfolio@worksiteleads.com"
 }

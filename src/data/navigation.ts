@@ -1,3 +1,5 @@
+import client from '~/data/client/client.json';
+
 export type NavigationLink = {
 	text: string;
 	href?: string;
@@ -29,14 +31,16 @@ export const navigationData = {
 	contactInfo: [
 		{
 			type: 'phone' as const,
-			value: '(316) 330-4092',
-			href: 'tel:+13163304092',
+			value: client.phoneDisplay ? client.phoneDisplay : '+1 (316) 330-4092',
+			href: client.phone ? `tel:${client.phone}` : 'tel:+13163304092',
 			icon: 'lucide:phone',
 		},
 		{
 			type: 'email' as const,
-			value: 'portfolio@worksiteleads.com',
-			href: 'mailto:portfolio@worksiteleads.com',
+			value: client.email ? client.email : 'portfolio@worksiteleads.com',
+			href: client.email
+				? `mailto:${client.email}`
+				: 'mailto:portfolio@worksiteleads.com',
 			icon: 'lucide:mail',
 		},
 	] as ContactInfo[],
@@ -104,8 +108,12 @@ export const navigationData = {
 
 	// Brand/Logo configuration
 	brand: {
-		name: 'Premier',
-		accent: 'Renovations',
+		name: client.logoConfig.defaultColor
+			? client.logoConfig.defaultColor
+			: 'Premier',
+		accent: client.logoConfig.altColor
+			? client.logoConfig.altColor
+			: 'Renovations',
 		href: '/',
 		ariaLabel: 'Premier Renovations - Home',
 	},
