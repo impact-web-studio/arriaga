@@ -1,11 +1,11 @@
 {
-	"companyName": "Kenny Leads",
+	"companyName": "",
     "logoConfig": {
-      "defaultColor": "Kenny",
-      "altColor": "Leads"
+      "defaultColor": "",
+      "altColor": ""
     },
-	"tagline": "Tagline placeholder",
-	"phone": "+01231231234",
-	"phoneDisplay": "+0(999)999-1234",
-	"email": "kenny@worksiteleads.com"
+	"tagline": "",
+	"phone": "+13162278979",
+	"phoneDisplay": "(316) 227-8979",
+	"email": "worksiteleadsteam@gmail.com"
 }
