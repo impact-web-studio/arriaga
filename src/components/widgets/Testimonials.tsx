@@ -60,7 +60,7 @@ const Testimonials = () => {
 	return (
 		<section
 			id="testimonials"
-			className="py-20 testimonial-gradient"
+			className="py-20 testimonial-gradient bg-secondary-50"
 		>
 			<div className="container mx-auto px-4">
 				<div className="max-w-6xl mx-auto">
