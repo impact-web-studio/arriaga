@@ -11,16 +11,16 @@ const Testimonials = () => {
 			text: "Premier Renovations transformed our dated kitchen into a modern masterpiece. The team was professional, punctual, and the quality exceeded our expectations. We couldn't be happier with the results!",
 			project: 'Kitchen Renovation',
 			image:
-				'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+				'https://images.pexels.com/photos/7447421/pexels-photo-7447421.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
 		},
 		{
-			name: 'Robert Chen',
+			name: 'Amanda Chen',
 			location: 'Summit, NJ',
 			rating: 5,
 			text: 'From start to finish, the basement renovation was handled with incredible attention to detail. The project was completed on time and within budget. I would recommend them to anyone without hesitation.',
 			project: 'Basement Finishing',
 			image:
-				'https://images.pexels.com/photos/3768912/pexels-photo-3768912.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+				'https://images.pexels.com/photos/6605424/pexels-photo-6605424.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
 		},
 		{
 			name: 'Emily Rodriguez',
@@ -29,7 +29,7 @@ const Testimonials = () => {
 			text: 'The master bathroom renovation was absolutely stunning. The team listened to our vision and brought it to life beautifully. The craftsmanship is outstanding and the materials are top quality.',
 			project: 'Bathroom Remodel',
 			image:
-				'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+				'https://images.pexels.com/photos/3768912/pexels-photo-3768912.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
 		},
 		{
 			name: 'David & Lisa Thompson',
@@ -38,7 +38,7 @@ const Testimonials = () => {
 			text: 'Our whole home renovation was a massive undertaking, but Premier Renovations made it seamless. Their communication was excellent and the final result is our dream home. Worth every penny!',
 			project: 'Whole Home Renovation',
 			image:
-				'https://images.pexels.com/photos/3808843/pexels-photo-3808843.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+				'https://images.pexels.com/photos/6625765/pexels-photo-6625765.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
 		},
 	];
 
