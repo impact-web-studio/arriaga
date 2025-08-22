@@ -117,25 +117,27 @@ const Testimonials = () => {
 								)}
 							</div>
 
-							<blockquote className="text-xl md:text-2xl text-secondary-700 mb-8 leading-relaxed italic max-w-4/5 justify-self-center">
-								"{testimonials[currentTestimonial].text}"
-							</blockquote>
+							<div className="max-w-4/5 flex flex-col justify-self-center">
+								<blockquote className="text-xl md:text-2xl text-secondary-700 mb-8 leading-relaxed italic">
+									"{testimonials[currentTestimonial].text}"
+								</blockquote>
 
-							<div className="flex items-center space-x-4">
-								<img
-									src={testimonials[currentTestimonial].image}
-									alt={testimonials[currentTestimonial].name}
-									className="w-16 h-16 rounded-full object-cover"
-								/>
-								<div>
-									<div className="font-heading font-bold text-secondary-900 text-lg">
-										{testimonials[currentTestimonial].name}
-									</div>
-									<div className="text-secondary-600">
-										{testimonials[currentTestimonial].location}
-									</div>
-									<div className="text-primary-600 font-medium text-sm">
-										{testimonials[currentTestimonial].project}
+								<div className="flex items-center space-x-4">
+									<img
+										src={testimonials[currentTestimonial].image}
+										alt={testimonials[currentTestimonial].name}
+										className="w-16 h-16 rounded-full object-cover"
+									/>
+									<div>
+										<div className="font-heading font-bold text-secondary-900 text-lg">
+											{testimonials[currentTestimonial].name}
+										</div>
+										<div className="text-secondary-600">
+											{testimonials[currentTestimonial].location}
+										</div>
+										<div className="text-primary-600 font-medium text-sm">
+											{testimonials[currentTestimonial].project}
+										</div>
 									</div>
 								</div>
 							</div>
