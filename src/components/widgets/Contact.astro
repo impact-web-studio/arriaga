@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import client from '~/data/client/client.json';
 import Form from '../ui/Form.astro';
 ---
 
@@ -43,9 +44,9 @@ import Form from '../ui/Form.astro';
 								<div>
 									<h4 class="font-semibold text-secondary-900 mb-1">Phone</h4>
 									<a
-										href="tel:+13163304092"
+										href=`tel:${client.phone}`
 										class="text-secondary-600 hover:text-primary-600 transition-colors"
-										>(316) 330-4092</a
+										>{client.phoneDisplay}</a
 									>
 									<p class="text-sm text-secondary-500">
 										Available 7 days a week
@@ -63,9 +64,9 @@ import Form from '../ui/Form.astro';
 								<div>
 									<h4 class="font-semibold text-secondary-900 mb-1">Email</h4>
 									<a
-										href="mailto:portfolio@worksiteleads.com"
+										href=`mailto:${client.email}`
 										class="text-secondary-600 hover:text-primary-600 transition-colors"
-										>portfolio@worksiteleads.com</a
+										>{client.email}</a
 									>
 									<p class="text-sm text-secondary-500">
 										We respond within 24 hours
