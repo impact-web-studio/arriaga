@@ -155,13 +155,13 @@ export const footerData = {
 			links: [
 				{
 					type: 'phone',
-					value: '+1 (316) 330-4092',
-					href: 'tel:+13163304092',
+					value: client.phoneDisplay,
+					href: `tel:${client.phone}`,
 				},
 				{
 					type: 'email',
-					value: 'portfolio@worksiteleads.com',
-					href: 'mailto:portfolio@worksiteleads.com',
+					value: client.email,
+					href: `mailto:${client.email}`,
 				},
 				{
 					type: 'location',
@@ -199,5 +199,5 @@ export const footerData = {
 			href: '/license',
 		},
 	],
-	footNote: '© 2025 Premier Renovations. All rights reserved.',
+	footNote: `© 2025 ${client.companyName}. All rights reserved.`,
 };
