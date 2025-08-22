@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import client from '~/data/client/client.json';
 
 // Layout & Sections
 import Layout from '~/layouts/PageLayout.astro';
@@ -24,8 +24,8 @@ import Contact from '~/components/widgets/Contact.astro';
 			},
 			{
 				variant: 'secondary',
-				text: 'Call Now: (316) 330-4092',
-				href: 'tel:+13163304092',
+				text: `Call Now: ${client.phoneDisplay}`,
+				href: `tel:${client.phone}`,
 			},
 		]}
 		backgroundImage={{

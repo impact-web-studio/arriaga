@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import client from '~/data/client/client.json';
 
 const stats = [
 	{ icon: 'lucide:clock', label: 'Years of Experience', value: '25+' },
@@ -19,7 +20,7 @@ const stats = [
 				<h2
 					class="font-heading text-4xl md:text-5xl font-bold text-secondary-900 mb-6"
 				>
-					About Premier Renovations
+					About {client.companyName}
 				</h2>
 				<p class="text-xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
 					With over 25 years of experience, we've built our reputation on
@@ -28,7 +29,7 @@ const stats = [
 				</p>
 			</div>
 
-			<div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+			<div class="grid lg:grid-cols-2 gap-12 items-start mb-16">
 				<div>
 					<img
 						src="https://images.pexels.com/photos/8293740/pexels-photo-8293740.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
