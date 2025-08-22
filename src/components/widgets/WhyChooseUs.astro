@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import client from '~/data/client/client.json';
 
 const reasons = [
 	{
@@ -48,7 +49,7 @@ const reasons = [
 				<h2
 					class="font-heading text-4xl md:text-5xl font-bold text-secondary-900 mb-6"
 				>
-					Why Choose Premier Renovations?
+					Why Choose {client.companyName}?
 				</h2>
 				<p class="text-xl text-secondary-600 max-w-3xl mx-auto leading-relaxed">
 					When you choose us for your renovation project, you're choosing
