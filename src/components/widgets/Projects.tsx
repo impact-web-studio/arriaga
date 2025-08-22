@@ -172,7 +172,7 @@ const Projects = () => {
 						))}
 					</div>
 
-					<div className="text-center mt-12">
+					{/* <div className="text-center mt-12">
 						<p className="text-secondary-600 mb-6">
 							Want to see more of our work? View our complete portfolio or
 							schedule a consultation.
@@ -180,7 +180,7 @@ const Projects = () => {
 						<button className="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors shadow-lg">
 							View Complete Portfolio
 						</button>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</section>
