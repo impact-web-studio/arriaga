@@ -110,15 +110,22 @@ const currentUrl = Astro.url;
 		>
 			<!-- Logo/Brand Section -->
 			<div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
-				<a
-					class="flex items-center font-heading font-bold text-2xl text-primary-900"
-					href={brand.href || '/'}
+				<button
+					class="font-heading font-bold text-2xl text-primary-900 w-fit"
+					data-scroll-to="home"
 					aria-label={brand.ariaLabel || `${brand.name} - Home`}
 				>
 					{brand.name}{
-						brand.accent && <span class="text-primary-600">{brand.accent}</span>
+						brand.accent && (
+							<span
+								data-scroll-to="home"
+								class="text-primary-600 inline-block"
+							>
+								{brand.accent}
+							</span>
+						)
 					}
-				</a>
+				</button>
 
 				<!-- Mobile Menu Toggle -->
 				<div class="flex items-center md:hidden">
