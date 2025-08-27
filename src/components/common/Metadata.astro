@@ -1,4 +1,6 @@
 ---
+import metadata from '~/data/client/metadata.json';
+import client from '~/data/client/client.json';
 export interface Props {
 	title: string;
 	description: string;
@@ -13,14 +15,14 @@ export interface Props {
 }
 
 const {
-	title,
-	description,
+	title = metadata.title,
+	description = metadata.description,
 	url = 'https://example.com',
 	image = '/og-default.jpg',
-	keywords = [],
+	keywords = metadata.keywords || [],
 	type = 'website',
 	locale = 'en_US',
-	siteName = 'Example Site',
+	siteName = client.companyName,
 	robots = 'index, follow',
 	schema,
 } = Astro.props as Props;
