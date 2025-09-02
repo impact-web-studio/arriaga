@@ -1,11 +1,11 @@
 {
-	"companyName": "Premier Renovations",
-	"logoConfig": {
-		"defaultColor": "Premier",
-		"altColor": "Renovations"
-	},
-	"tagline": "Tagline placeholder",
-	"phone": "+13163304092",
-	"phoneDisplay": "+1 (316) 330-4092",
-	"email": "portfolio@worksiteleads.com"
+	"companyName": "McDonald Concrete & Construction",
+    "logoConfig": {
+      "defaultColor": "",
+      "altColor": ""
+    },
+	"tagline": "",
+	"phone": "+13166517747",
+	"phoneDisplay": "(316) 651-7747",
+	"email": "lrmcdonald@cox.net"
 }
