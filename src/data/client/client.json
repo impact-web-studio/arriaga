@@ -1,11 +1,11 @@
 {
 	"companyName": "McDonald Concrete & Construction",
     "logoConfig": {
-      "defaultColor": "",
-      "altColor": ""
+      "defaultColor": "Company",
+      "altColor": "Logo"
     },
 	"tagline": "",
 	"phone": "+13166517747",
-	"phoneDisplay": "(316) 651-7747",
+	"phoneDisplay": "+1 (316) 651-7747",
 	"email": "lrmcdonald@cox.net"
 }
