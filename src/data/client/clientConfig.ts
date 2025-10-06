@@ -7,7 +7,7 @@ type CompanyInfo = {
 };
 
 export const company: CompanyInfo = {
-	name: 'Premier Renovations',
+	name: 'Arriaga Construction and Landscaping',
 	tagline:
 		'Trusted renovations with craftsmanship you can count on. Transform your space with our expert team.',
 	phone: '+13163304092',
