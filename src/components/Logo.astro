@@ -1,13 +1,16 @@
 ---
-const {
-	neutralText = 'Worksite',
-	colorText = 'Leads',
-	textColor = 'text-gray-900',
-} = Astro.props;
+import { Image } from 'astro:assets';
+import logo from '~/assets/logo-blue.png';
 ---
 
-<span
-	class={`self-center text-2xl md:text-xl font-bold ${textColor} whitespace-nowrap`}
->
-	{neutralText}<span class="text-blue-500">{colorText}</span>
-</span>
+<Image
+	src={logo}
+	alt="Arriaga Construction & Landscaping Logo"
+/>
+
+<script>
+	const image = document.querySelector('img');
+	image?.addEventListener('click', () => {
+		console.log('clicked');
+	});
+</script>

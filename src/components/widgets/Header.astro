@@ -7,6 +7,7 @@ import {
 	type ContactInfo,
 	type NavigationAction,
 } from '~/data/navigation';
+import Logo from '../Logo.astro';
 
 export interface Props {
 	id?: string;
@@ -115,16 +116,7 @@ const currentUrl = Astro.url;
 					data-scroll-to="home"
 					aria-label={brand.ariaLabel || `${brand.name} - Home`}
 				>
-					{brand.name}{
-						brand.accent && (
-							<span
-								data-scroll-to="home"
-								class="text-primary-600 inline-block"
-							>
-								{brand.accent}
-							</span>
-						)
-					}
+					<Logo />
 				</button>
 
 				<!-- Mobile Menu Toggle -->
@@ -402,7 +394,9 @@ const currentUrl = Astro.url;
 	// Add click listeners to all scroll buttons
 	document.querySelectorAll('[data-scroll-to]').forEach((button) => {
 		button.addEventListener('click', (e) => {
-			const target = (e.target as HTMLElement).getAttribute('data-scroll-to');
+			const target = (e.currentTarget as HTMLElement).getAttribute(
+				'data-scroll-to'
+			);
 			if (target) {
 				e.preventDefault();
 				scrollToSection(target);
