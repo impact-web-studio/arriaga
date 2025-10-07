@@ -79,18 +79,19 @@ const getSocialIcon = (type: string) => {
 
 <footer class="bg-slate-900 text-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+		<div class="grid grid-cols-1 lg:grid-cols-6 gap-8 lg:gap-12">
 			<!-- Company Info Section -->
-			<div class="lg:col-span-1">
+			<div class="lg:col-span-3">
 				<div class="mb-6">
-					<a
-						class="inline-block"
-						href="/"
+					<button
+						class="font-heading font-bold text-2xl text-primary-900 w-full sm:max-w-[480px]"
+						data-scroll-to="home"
+						aria-label="Arriaga Construction & Landscaping - Home"
 					>
-						<Logo textColor="text-white" />
-					</a>
+						<Logo type="footer" />
+					</button>
 				</div>
-				<p class="text-gray-300 text-sm leading-relaxed mb-8">
+				<p class="text-gray-300 text-sm leading-relaxed mb-8 lg:max-w-[480px]">
 					{description}
 				</p>
 
@@ -144,7 +145,7 @@ const getSocialIcon = (type: string) => {
 			</div>
 
 			<!-- Contact Section -->
-			<div class="lg:col-span-1">
+			<div class="lg:col-span-2">
 				{
 					contact.map(({ title, links: contactLinks }) => (
 						<div>
@@ -171,7 +172,7 @@ const getSocialIcon = (type: string) => {
 														{href && !isLocation ? (
 															<a
 																href={href}
-																class="text-gray-300 hover:text-white transition-colors duration-200"
+																class="text-gray-300 hover:text-white transition-colors duration-200 break-all"
 															>
 																{value}
 															</a>

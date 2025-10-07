@@ -1,6 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '~/assets/logo-blue.png';
+import headerLogo from '~/assets/logo-blue.png';
+import footerLogo from '~/assets/logo-alt.png';
+
+const { type = 'header' } = Astro.props;
+
+const logo = type === 'header' ? headerLogo : footerLogo;
 ---
 
 <Image
