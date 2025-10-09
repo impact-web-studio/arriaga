@@ -1,0 +1,43 @@
+<!-- This code stores the custom styles used within Arriaga's service list contact
+form. It is in reference to the iframe document and all selectors are taken from
+that root. All styles are directly applied within GHL under "Custom Code"  -->
+<script>
+	function clearSectionStyles(section) {
+		if (!section) return;
+		section.style.scrollMarginTop = '';
+		section.style.paddingBottom = '';
+	}
+
+	function initStyleOverride() {
+		const section = document.querySelector('[id="1cDkyOkhgmxiS8sbXBb9"]');
+		if (!section) return setTimeout(initStyleOverride, 300);
+		clearSectionStyles(section);
+
+		const observer = new MutationObserver(() => {
+			clearSectionStyles(section);
+		});
+
+		observer.observe(section, { attributes: true, attributeFilter: ['style'] });
+		console.log('[observer] enforcing style override');
+	}
+
+	if (document.readyState === 'loading')
+		document.addEventListener('DOMContentLoaded', initStyleOverride);
+	else initStyleOverride();
+</script>
+
+<style>
+	body {
+		background: rgba(120, 120, 120, 0.1);
+	}
+
+	#cal_servicemenu_widgets {
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+	}
+
+	[id='1cDkyOkhgmxiS8sbXBb9'] {
+		scroll-margin-top: unset !important;
+		padding-bottom: 0px !important;
+	}
+</style>
