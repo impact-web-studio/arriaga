@@ -121,26 +121,22 @@ export const navigationData = {
 
 export const footerData = {
 	description:
-		'Transforming homes throughout the Greater Metropolitan area for over 25 years. Licensed, insured, and committed to excellence in every project.',
+		'Transforming homes throughout the Wichita area for over half a decade. Honest, reliable, and committed to excellence in every project.',
 	links: [
 		{
 			title: 'Services',
 			links: [
 				{
-					text: 'Kitchen Renovation',
+					text: 'Landscaping',
 					href: '/services/kitchen',
 				},
 				{
-					text: 'Bathroom Remodel',
+					text: 'Construction - Commercial Properties',
 					href: '/services/bathroom',
 				},
 				{
-					text: 'Basement Finishing',
+					text: 'Construction - Residential Properties',
 					href: '/services/basement',
-				},
-				{
-					text: 'Full Home Remodels',
-					href: '/services/full-home',
 				},
 				{
 					text: 'Emergency Services',
@@ -165,7 +161,7 @@ export const footerData = {
 				},
 				{
 					type: 'location',
-					value: 'Greater Metropolitan Area',
+					value: 'Wichita, Kansas',
 					href: '#', // or Google Maps link
 				},
 			],
@@ -174,15 +170,11 @@ export const footerData = {
 	socials: [
 		{
 			type: 'facebook',
-			href: 'https://facebook.com/premierrenovations',
+			href: 'https://facebook.com/arriagaconstructionandlandscaping/',
 		},
 		{
 			type: 'instagram',
-			href: 'https://instagram.com/premierrenovations',
-		},
-		{
-			type: 'linkedin',
-			href: 'https://linkedin.com/company/premierrenovations',
+			href: 'https://www.instagram.com/arriaga_const_landscape/',
 		},
 	],
 	secondaryLinks: [
@@ -199,5 +191,5 @@ export const footerData = {
 			href: '/license',
 		},
 	],
-	footNote: `© 2025 ${client.companyName}. All rights reserved.`,
+	footNote: `A Worksite Leads Project © 2025 ${client.companyName}. All rights reserved.`,
 };
