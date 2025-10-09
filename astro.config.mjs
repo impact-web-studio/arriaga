@@ -9,19 +9,23 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-    // Default Website Config
-    // TODO: UPDATE WEBSITE DOMAIN
-    site: 'https://worksiteleads.com',
-    base: '/',
-    trailingSlash: 'never',
+	// Default Website Config
+	// TODO: UPDATE WEBSITE DOMAIN
+	site: 'https://worksiteleads.com',
+	base: '/',
+	trailingSlash: 'never',
 
-    integrations: [sitemap(), icon({
-        include: {
-            tabler: ['*'],
-            lucide: ['*'],
-        },
-		}), react()],
-    vite: {
-        plugins: [tailwindcss()],
-    },
+	integrations: [
+		sitemap(),
+		icon({
+			include: {
+				tabler: ['*'],
+				lucide: ['*'],
+			},
+		}),
+		react(),
+	],
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

@@ -1,0 +1,145 @@
+---
+import { Icon } from 'astro-icon/components';
+import client from '~/data/client/client.json';
+import UpdatedForm from '../ui/UpdatedForm.astro';
+import CalendarForm from '../ui/CalendarForm.astro';
+---
+
+<section
+	id="contact"
+	class="py-20 bg-secondary-50"
+>
+	<div class="container mx-auto px-4">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-16"></div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+				<!-- Contact Form -->
+				<UpdatedForm />
+				<!-- Contact Info -->
+				<div class="space-y-8">
+					<div class="bg-white rounded-2xl shadow-xl p-8">
+						<h3 class="font-heading text-2xl font-bold text-secondary-900 mb-6">
+							Get In Touch
+						</h3>
+						<div class="space-y-6">
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:phone"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">Phone</h4>
+									<a
+										href=`tel:${client.phone}`
+										class="text-secondary-600 hover:text-primary-600 transition-colors"
+										>{client.phoneDisplay}</a
+									>
+									<p class="text-sm text-secondary-500">
+										Available 7 days a week
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:mail"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div class="break-all">
+									<h4 class="font-semibold text-secondary-900 mb-1">Email</h4>
+									<a
+										href=`mailto:${client.email}`
+										class="text-secondary-600 hover:text-primary-600 transition-colors"
+										>{client.email}</a
+									>
+									<p class="text-sm text-secondary-500">
+										We respond within 24 hours
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:map-pin"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">
+										Service Area
+									</h4>
+									<p class="text-secondary-600">Greater Metropolitan Area</p>
+									<p class="text-sm text-secondary-500">
+										15+ communities served
+									</p>
+								</div>
+							</div>
+
+							<div class="flex items-start space-x-4">
+								<div class="bg-primary-50 rounded-lg p-3">
+									<Icon
+										name="lucide:clock"
+										class="h-6 w-6 text-primary-600"
+									/>
+								</div>
+								<div>
+									<h4 class="font-semibold text-secondary-900 mb-1">
+										Business Hours
+									</h4>
+									<p class="text-secondary-600">Monday - Friday: 7am - 6pm</p>
+									<p class="text-secondary-600">Saturday: 8am - 4pm</p>
+									<p class="text-secondary-600">Sunday: 9am - 3pm</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="bg-primary-600 text-white rounded-2xl p-8">
+						<h3 class="font-heading text-2xl font-bold mb-4">
+							Emergency Services
+						</h3>
+						<p class="mb-6 text-primary-100">
+							Need urgent repairs? We offer 24/7 emergency services for water
+							damage, structural issues, and other critical home problems.
+						</p>
+						<a
+							href="tel:+13163304092"
+							class="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-block"
+						>
+							Call Emergency Line
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script is:inline>
+	const form = document.getElementById('contact-form');
+	const confirmation = document.getElementById('confirmation');
+
+	form?.addEventListener('submit', (e) => {
+		e.preventDefault();
+		form.classList.add('hidden');
+		confirmation.classList.remove('hidden');
+
+		setTimeout(() => {
+			form.reset();
+			confirmation.classList.add('hidden');
+			form.classList.remove('hidden');
+		}, 3000);
+	});
+</script>
+
+<style>
+	.contact-form-gradient {
+		background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+	}
+</style>

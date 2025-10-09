@@ -1,0 +1,143 @@
+---
+
+---
+
+<div>
+	<!-- Your date selector or trigger -->
+	<input
+		type="text"
+		placeholder="Select a date"
+		class="cursor-pointer border rounded-lg px-3 py-2 w-full"
+		readonly
+	/>
+</div>
+
+<!-- Modal -->
+<div
+	id="bookingModal"
+	class="hidden fixed inset-0 bg-black/60 items-center justify-center z-50"
+>
+	<div
+		class="bg-white rounded-2xl p-4 max-w-[600px] w-[90%] relative shadow-lg"
+	>
+		<button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+			✕
+		</button>
+
+		<iframe
+			src="https://api.leadconnectorhq.com/widget/booking/Zu3m6Ec71xfajIvCN2uC"
+			style="width: 100%;border:none;overflow: hidden;"
+			scrolling="no"
+			id="Zu3m6Ec71xfajIvCN2uC_1759825962583"
+		></iframe><br /><script
+			src="https://link.msgsndr.com/js/form_embed.js"
+			type="text/javascript"
+		></script>
+	</div>
+</div>
+
+<script>
+	let showModal = false;
+
+	const datePicker = document.querySelector('input');
+	const modalClose = document.querySelector('#bookingModal button');
+
+	datePicker?.addEventListener('click', openModal);
+
+	modalClose?.addEventListener('click', closeModal);
+
+	function openModal() {
+		const modal = document.getElementById('bookingModal');
+		const iframe = modal.querySelector('iframe');
+		const skeleton = modal.querySelector('#iframeSkeleton');
+
+		// Ensure it only opens if currently hidden
+		if (modal.dataset.state === 'open') return;
+
+		modal.classList.remove('hidden');
+		document.body.style.overflow = 'hidden'; // prevent scroll
+		modal.dataset.state = 'opening';
+
+		// Animate fade in
+		requestAnimationFrame(() => {
+			modal.classList.add('opacity-100', 'backdrop-visible');
+		});
+
+		// Lazy load iframe once
+		if (!iframe.src) {
+			iframe.src = iframe.dataset.src;
+			iframe.onload = () => {
+				skeleton.style.display = 'none';
+				iframe.classList.remove('hidden');
+			};
+		}
+
+		// Mark as open after animation
+		setTimeout(() => {
+			modal.dataset.state = 'open';
+		}, 250);
+	}
+
+	function closeModal() {
+		const modal = document.getElementById('bookingModal');
+		if (modal.dataset.state !== 'open') return;
+
+		modal.dataset.state = 'closing';
+		modal.classList.remove('opacity-100', 'backdrop-visible');
+		document.body.style.overflow = '';
+
+		// Wait for fade-out before hiding
+		setTimeout(() => {
+			modal.classList.add('hidden');
+			modal.dataset.state = 'closed';
+		}, 250);
+	}
+
+	document.addEventListener('click', (e) => {
+		if (e.target.id === 'bookingModal') closeModal();
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeModal();
+	});
+</script>
+
+<style>
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	@keyframes fadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
+	.animate-fadeIn {
+		animation: fadeIn 0.25s ease-out forwards;
+	}
+	.animate-fadeOut {
+		animation: fadeOut 0.25s ease-in forwards;
+	}
+
+	@keyframes modalTransition {
+		0% {
+			transform: scale(0.95);
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+	.animate-modalTransition {
+		animation: modalTransition 0.3s ease-out forwards;
+	}
+</style>
